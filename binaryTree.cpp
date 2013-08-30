@@ -1,7 +1,7 @@
 #include "binaryTree.h"
 
 using namespace std;
-
+//初始化二叉树
 binaryTreeNode * binaryTree::initBTree(int a[],int i,int n)
 {
 	if (i>=n)
@@ -18,6 +18,7 @@ binaryTreeNode * binaryTree::initBTree(int a[],int i,int n)
 	return root;
 }
 
+//先序遍历，递归版本
 void binaryTree::preOrderTraverse(binaryTreeNode * root)
 {
 	if (root==NULL)
@@ -27,6 +28,26 @@ void binaryTree::preOrderTraverse(binaryTreeNode * root)
 	preOrderTraverse(root->pRight);
 }
 
+//先序遍历，非递归版本
+void binaryTree::preOrderTraverse(binaryTreeNode * root,bool type)
+{
+	if (root==NULL)
+		return ;
+	stack<binaryTreeNode *> iTreeStack;
+	iTreeStack.push(root);
+	while(!iTreeStack.empty())
+	{
+		binaryTreeNode * node = iTreeStack.top();
+		iTreeStack.pop();
+		cout << node->value << endl;
+		if (node->pRight!=NULL)
+			iTreeStack.push(node->pRight);
+		if (node->pLeft!=NULL)
+			iTreeStack.push(node->pLeft);
+	}
+}
+
+//中序遍历，递归版本
 void binaryTree::inOrderTraverse(binaryTreeNode *root)
 {
 	if (root==NULL)
@@ -42,6 +63,36 @@ void binaryTree::inOrderTraverse(binaryTreeNode *root)
 	}
 }
 
+//中序遍历，非递归版本
+void binaryTree::inOrderTraverse(binaryTreeNode * root,bool type)
+{
+	if (root==NULL)
+		return ;
+	stack<binaryTreeNode *> iTreeStack;
+	iTreeStack.push(root);
+	binaryTreeNode * node = root;
+	while(!iTreeStack.empty())
+	{
+		while(node->pLeft!=NULL)
+		{
+			iTreeStack.push(node->pLeft);
+			node = node->pLeft;
+		}
+		if(!iTreeStack.empty())//若是空怎么办？
+		{
+			node=iTreeStack.top();
+			iTreeStack.pop();
+			cout << node->value << endl;
+			if(node->pRight!=NULL)
+			{
+				iTreeStack.push(node->pRight);
+				node = node->pRight;
+			}
+		}
+	}
+}
+
+//后序遍历，递归版本
 void binaryTree::postOrderTraverse(binaryTreeNode *root)
 {
 	if (root==NULL)
@@ -55,4 +106,10 @@ void binaryTree::postOrderTraverse(binaryTreeNode *root)
 		postOrderTraverse(root->pRight);
 	}
 	cout << root->value << endl;
+}
+
+//后序遍历，非递归版本
+void binaryTree::postOrderTraverse(binaryTreeNode * root,bool type)
+{
+
 }

@@ -10,9 +10,9 @@ int main()
 	binaryTree test;
 	binaryTreeNode * root;
 	root = test.initBTree(a,0,11);
-	test.preOrderTraverse(root);
+	test.preOrderTraverse(root,true);
 	cout << "===========" << endl;
-	test.inOrderTraverse(root);
+	test.inOrderTraverse(root,true);
 	cout << "===========" << endl;
 	test.postOrderTraverse(root);
 	return 0;
