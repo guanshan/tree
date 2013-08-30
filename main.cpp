@@ -10,10 +10,15 @@ int main()
 	binaryTree test;
 	binaryTreeNode * root;
 	root = test.initBTree(a,0,11);
-	test.preOrderTraverse(root,true);
+//	test.preOrderTraverse(root);//递归版本
+	test.preOrderTraverse(root,true);//非递归版本
 	cout << "===========" << endl;
-	test.inOrderTraverse(root,true);
+//	test.inOrderTraverse(root);//递归版本
+	test.inOrderTraverse(root,true);//非递归版本
 	cout << "===========" << endl;
-	test.postOrderTraverse(root);
+//	test.postOrderTraverse(root);//递归版本
+	test.postOrderTraverse(root,true);//非递归版本
+	cout << "===========" << endl;
+	test.levelOrderTraverse(root);
 	return 0;
 }

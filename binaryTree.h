@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <stack>
+#include <queue>
 
 using namespace std;
 
@@ -26,6 +27,8 @@ public:
 	void preOrderTraverse(binaryTreeNode * root,bool type);
 	void inOrderTraverse(binaryTreeNode * root,bool type);
 	void postOrderTraverse(binaryTreeNode * root,bool type);
+	//层次遍历
+	void levelOrderTraverse(binaryTreeNode * root);
 };
 
 #endif

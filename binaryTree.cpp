@@ -33,17 +33,17 @@ void binaryTree::preOrderTraverse(binaryTreeNode * root,bool type)
 {
 	if (root==NULL)
 		return ;
-	stack<binaryTreeNode *> iTreeStack;
-	iTreeStack.push(root);
-	while(!iTreeStack.empty())
+	stack<binaryTreeNode *> treeStack;
+	treeStack.push(root);
+	while(!treeStack.empty())
 	{
-		binaryTreeNode * node = iTreeStack.top();
-		iTreeStack.pop();
+		binaryTreeNode * node = treeStack.top();
+		treeStack.pop();
 		cout << node->value << endl;
 		if (node->pRight!=NULL)
-			iTreeStack.push(node->pRight);
+			treeStack.push(node->pRight);
 		if (node->pLeft!=NULL)
-			iTreeStack.push(node->pLeft);
+			treeStack.push(node->pLeft);
 	}
 }
 
@@ -68,26 +68,23 @@ void binaryTree::inOrderTraverse(binaryTreeNode * root,bool type)
 {
 	if (root==NULL)
 		return ;
-	stack<binaryTreeNode *> iTreeStack;
-	iTreeStack.push(root);
+	stack<binaryTreeNode *> treeStack;
+	treeStack.push(root);
 	binaryTreeNode * node = root;
-	while(!iTreeStack.empty())
+	while(!treeStack.empty())
 	{
 		while(node->pLeft!=NULL)
 		{
-			iTreeStack.push(node->pLeft);
+			treeStack.push(node->pLeft);
 			node = node->pLeft;
 		}
-		if(!iTreeStack.empty())//若是空怎么办？
+		node=treeStack.top();
+		treeStack.pop();
+		cout << node->value << endl;
+		if(node->pRight!=NULL)
 		{
-			node=iTreeStack.top();
-			iTreeStack.pop();
-			cout << node->value << endl;
-			if(node->pRight!=NULL)
-			{
-				iTreeStack.push(node->pRight);
-				node = node->pRight;
-			}
+			treeStack.push(node->pRight);
+			node = node->pRight;
 		}
 	}
 }
@@ -111,5 +108,46 @@ void binaryTree::postOrderTraverse(binaryTreeNode *root)
 //后序遍历，非递归版本
 void binaryTree::postOrderTraverse(binaryTreeNode * root,bool type)
 {
+	if (root==NULL)
+		return;
+	stack<binaryTreeNode *> treeStack;
+	stack<binaryTreeNode *> output;
+	treeStack.push(root);	
+	binaryTreeNode *node = NULL;
+	while(!treeStack.empty())
+	{
+		node=treeStack.top();
+		treeStack.pop();
+		output.push(node);
+		if(node->pLeft)
+			treeStack.push(node->pLeft);
+		if(node->pRight)
+			treeStack.push(node->pRight);
+	}
+	while(!output.empty())
+	{
+		node = output.top();
+		output.pop();
+		cout << node->value  << endl;
+	}
+}
 
+//层次遍历
+void binaryTree::levelOrderTraverse(binaryTreeNode *root)
+{
+	if(root==NULL)
+		return;
+	queue<binaryTreeNode *> treeQueue;
+	treeQueue.push(root);
+	binaryTreeNode * node;
+	while(!treeQueue.empty())
+	{
+		node = treeQueue.front();
+		treeQueue.pop();
+		cout << node->value << endl;
+		if (node->pLeft)
+			treeQueue.push(node->pLeft);
+		if (node->pRight)
+			treeQueue.push(node->pRight);
+	}
 }
