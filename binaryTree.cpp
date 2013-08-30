@@ -4,14 +4,10 @@ using namespace std;
 //初始化二叉树
 binaryTreeNode * binaryTree::initBTree(int a[],int i,int n)
 {
-	if (i>=n)
+	//以-1标示空节点
+	if (i>=n || a[i]==-1)
 		return NULL;
 	binaryTreeNode * root = new binaryTreeNode();
-	//以-1标示空节点
-	if(a[i]==-1)
-	{
-		return NULL;
-	}
 	root->value = a[i];
 	root->pLeft = initBTree(a,2*i+1,n);
 	root->pRight = initBTree(a,2*i+2,n);
