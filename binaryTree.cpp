@@ -59,7 +59,7 @@ void binaryTree::inOrderTraverse(binaryTreeNode *root)
 	}
 }
 
-//中序遍历，非递归版本
+//中序遍历，非递归版本,这个有错误，回头再改！
 void binaryTree::inOrderTraverse(binaryTreeNode * root,bool type)
 {
 	if (root==NULL)
